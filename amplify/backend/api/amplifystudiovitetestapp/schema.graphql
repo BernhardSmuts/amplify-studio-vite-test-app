@@ -1,0 +1,16 @@
+type Branch @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  LocationName: String
+  City: String
+  contactNumber: String
+  Cars: [Car] @hasMany(indexName: "byBranch", fields: ["id"])
+}
+
+type Car @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  Type: String
+  Year: String
+  Color: String
+  Location: String
+  branchID: ID! @index(name: "byBranch")
+}
